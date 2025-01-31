@@ -53,7 +53,7 @@ const GenderStatistics = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await axios.get('http://localhost:3500/gender/gender-stats');
+                const response = await axios.get('https://yazaki-api.onrender.com/gender/gender-stats');
                 setStats(response.data);
             } catch (error) {
                 console.error('Error fetching gender statistics:', error);

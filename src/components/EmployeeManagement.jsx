@@ -93,7 +93,7 @@ const EmployeeManagement = () => {
 
     const fetchEmployees = async () => {
         try {
-            const response = await axios.get('http://localhost:3500/employees');
+            const response = await axios.get('https://yazaki-api.onrender.com/employees');
             setEmployees(response.data);
             setLoading(false);
         } catch (err) {
@@ -144,7 +144,7 @@ const EmployeeManagement = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3500/employees/${id}`);
+            await axios.delete(`https://yazaki-api.onrender.com/employees/${id}`);
             fetchEmployees();
         } catch (err) {
             setError(err.message || 'Error deleting employee');
@@ -175,9 +175,9 @@ const EmployeeManagement = () => {
         e.preventDefault();
         try {
             if (editMode) {
-                await axios.patch(`http://localhost:3500/employees/${formData._id}`, formData);
+                await axios.patch(`https://yazaki-api.onrender.com/employees/${formData._id}`, formData);
             } else {
-                await axios.post('http://localhost:3500/employees', formData);
+                await axios.post('https://yazaki-api.onrender.com/employees', formData);
             }
             fetchEmployees();
             handleEditCancel();
@@ -189,7 +189,7 @@ const EmployeeManagement = () => {
     const handleSubmit1 = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3500/employees', formData);
+            const response = await axios.post('https://yazaki-api.onrender.com/employees', formData);
             console.log('Employee created:', response.data);
             window.location.reload(); // Refresh the page
         } catch (error) {
@@ -213,7 +213,7 @@ const EmployeeManagement = () => {
 
     const importEmployees = async (employees) => {
         try {
-            await axios.post('http://localhost:3500/employees/import', { employees });
+            await axios.post('https://yazaki-api.onrender.com/employees/import', { employees });
             fetchEmployees();
         } catch (err) {
             setError(err.message || 'Error importing employees');

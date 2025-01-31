@@ -16,7 +16,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get('http://localhost:3500/users');
+                const response = await axios.get('https://yazaki-api.onrender.com/users');
                 setUser(response.data[0]);
                 setFormData({
                     id: response.data[0]._id,
@@ -45,8 +45,8 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.patch('http://localhost:3500/users', formData);
-            const updatedUserResponse = await axios.get('http://localhost:3500/users');
+            await axios.patch('https://yazaki-api.onrender.com/users', formData);
+            const updatedUserResponse = await axios.get('https://yazaki-api.onrender.com/users');
             setUser(updatedUserResponse.data[0]);
             setEditMode(false);
         } catch (err) {

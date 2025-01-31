@@ -67,7 +67,7 @@ const ImportEmployeeshc = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:3500/employeescombu/import', formData, {
+      const response = await axios.post('https://yazaki-api.onrender.com/employeescombu/import', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -88,7 +88,7 @@ const ImportEmployeeshc = () => {
     const formattedMonth = monthToFetch.split('-').reverse().join('-');
 
     try {
-      const employeesResponse = await axios.get(`http://localhost:3500/employeescombu/month/${monthToFetch}`);
+      const employeesResponse = await axios.get(`https://yazaki-api.onrender.com/employeescombu/month/${monthToFetch}`);
       const employees = employeesResponse.data;
 
       if (employees.length === 0) {
@@ -152,7 +152,7 @@ const ImportEmployeeshc = () => {
       })));
 
       // Fetch statistics data
-      const statisticsResponse = await axios.get('http://localhost:3500/statisticscombu');
+      const statisticsResponse = await axios.get('https://yazaki-api.onrender.com/statisticscombu');
       const statistics = statisticsResponse.data;
 
       if (statistics.length === 0) {
@@ -240,7 +240,7 @@ const ImportEmployeeshc = () => {
   const handleAddStat = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:3500/statisticscombu', newStat);
+      await axios.post('https://yazaki-api.onrender.com/statisticscombu', newStat);
       setMessage('Statistics added successfully.');
       setNewStat({ year: '', month: '', absenteeism: '', overtime: '', turnover: '' });
       fetchStatistics(); // Refresh statistics data
@@ -253,7 +253,7 @@ const ImportEmployeeshc = () => {
     event.preventDefault();
     try {
       if (!editStat) return;
-      await axios.put(`http://localhost:3500/statisticscombu/${editStat._id}`, editStat);
+      await axios.put(`https://yazaki-api.onrender.com/statisticscombu/${editStat._id}`, editStat);
       setMessage('Statistics updated successfully.');
       setEditStat(null);
       fetchStatistics(); // Refresh statistics data
@@ -264,7 +264,7 @@ const ImportEmployeeshc = () => {
 
   const handleDeleteStat = async (id) => {
     try {
-      await axios.delete(`http://localhost:3500/statisticscombu/${id}`);
+      await axios.delete(`https://yazaki-api.onrender.com/statisticscombu/${id}`);
       setMessage('Statistics deleted successfully.');
       fetchStatistics(); // Refresh statistics data after deletion
     } catch (error) {
@@ -397,7 +397,7 @@ const ImportEmployeeshc = () => {
     setDeleteMessage('');
   
     try {
-      const response = await axios.delete(`http://localhost:3500/employeescombu/month/${deleteMonth}`);
+      const response = await axios.delete(`https://yazaki-api.onrender.com/employeescombu/month/${deleteMonth}`);
       setDeleteMessage(response.data.message); // Set success message
       setDeleteMonth(''); // Clear input after successful delete
     } catch (error) {

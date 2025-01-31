@@ -83,7 +83,7 @@ const Pointage = () => {
 
   const fetchPointages = async () => {
     try {
-      const response = await axios.get('http://localhost:3500/pointage');
+      const response = await axios.get('https://yazaki-api.onrender.com/pointage');
       console.log('Fetched pointages data:', response.data);
       setPointages(response.data);
     } catch (error) {
@@ -109,9 +109,9 @@ const Pointage = () => {
       };
 
       if (editing) {
-        await axios.patch(`http://localhost:3500/pointage/${editing}`, data);
+        await axios.patch(`https://yazaki-api.onrender.com/pointage/${editing}`, data);
       } else {
-        await axios.post('http://localhost:3500/pointage', data);
+        await axios.post('https://yazaki-api.onrender.com/pointage', data);
       }
 
       fetchPointages();
@@ -146,7 +146,7 @@ const Pointage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3500/pointage/${id}`);
+      await axios.delete(`https://yazaki-api.onrender.com/pointage/${id}`);
       fetchPointages();
     } catch (error) {
       console.error('Error deleting pointage:', error);
@@ -183,7 +183,7 @@ const Pointage = () => {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      await axios.post('http://localhost:3500/pointage/import', formData, {
+      await axios.post('https://yazaki-api.onrender.com/pointage/import', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setRefreshKey(prevKey => prevKey + 1);
@@ -207,7 +207,7 @@ const Pointage = () => {
 
   const analyzeData = async () => {
     try {
-      const response = await axios.post('http://localhost:3500/pointage/analyze', {
+      const response = await axios.post('https://yazaki-api.onrender.com/pointage/analyze', {
         start: analysisPeriod.start,
         end: analysisPeriod.end,
         motifs: selectedMotifs
